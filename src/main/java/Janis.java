@@ -1,5 +1,9 @@
-public class Janis {
-    public static void greet() {
-        System.out.println("Hello from Janis!");
+public final class Janis {
+    public static StyleBuilder of(String text) {
+        return new StyleBuilder(text);
+    }
+
+    public static StyleBuilder style() {
+        return new StyleBuilder();
     }
 }
