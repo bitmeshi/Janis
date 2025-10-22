@@ -5,7 +5,7 @@
 
 [![Java](https://img.shields.io/badge/Java-21+-orange?style=flat&logo=java)](https://www.oracle.com/java/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com)
+[![JitPack](https://jitpack.io/v/bitmeshi/Janis.svg)](https://jitpack.io/#bitmeshi/Janis)
 
 A lightweight and fluent Java library for styling terminal text with ANSI escape codes. Create beautiful, colorful
 console output with an intuitive API.
@@ -25,10 +25,54 @@ console output with an intuitive API.
 
 ## Installation
 
-> **Note:** This library is not yet published to JitPack or Maven Central. To use it, you need to clone the repository
-> and build it locally.
+### Gradle
+
+Add the JitPack repository to your `settings.gradle.kts`:
+
+```kotlin
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+```
+
+Add the dependency to your `build.gradle.kts`:
+
+```kotlin
+dependencies {
+    implementation("com.github.bitmeshi:Janis:v1.0.0")
+}
+```
+
+### Maven
+
+Add the JitPack repository to your `pom.xml`:
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+Add the dependency:
+
+```xml
+<dependency>
+    <groupId>com.github.bitmeshi</groupId>
+    <artifactId>Janis</artifactId>
+    <version>v1.0.0</version>
+</dependency>
+```
 
 ### Build from Source
+
+Alternatively, you can clone and build the project locally:
 
 ```bash
 git clone https://github.com/bitmeshi/Janis.git
