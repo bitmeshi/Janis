@@ -93,13 +93,13 @@ public class Example {
 
 ```java
 // Standard colors
-BasicColor.BLACK,BasicColor.RED,BasicColor.GREEN,BasicColor.YELLOW,
-BasicColor.BLUE,BasicColor.MAGENTA,BasicColor.CYAN,BasicColor.WHITE
+BasicColor.BLACK, BasicColor.RED, BasicColor.GREEN, BasicColor.YELLOW,
+BasicColor.BLUE, BasicColor.MAGENTA, BasicColor.CYAN, BasicColor.WHITE
 
 // Bright variants
-BasicColor.BRIGHT_BLACK,BasicColor.BRIGHT_RED,BasicColor.BRIGHT_GREEN,
-BasicColor.BRIGHT_YELLOW,BasicColor.BRIGHT_BLUE,BasicColor.BRIGHT_MAGENTA,
-BasicColor.BRIGHT_CYAN,BasicColor.BRIGHT_WHITE
+BasicColor.BRIGHT_BLACK, BasicColor.BRIGHT_RED, BasicColor.BRIGHT_GREEN,
+BasicColor.BRIGHT_YELLOW, BasicColor.BRIGHT_BLUE, BasicColor.BRIGHT_MAGENTA,
+BasicColor.BRIGHT_CYAN, BasicColor.BRIGHT_WHITE
 ```
 
 #### RGB Colors
@@ -108,27 +108,11 @@ BasicColor.BRIGHT_CYAN,BasicColor.BRIGHT_WHITE
 
 ```java
 // Using RGB values (0-255)
-Janis.of("Text").
-
-rgb(255,128,0).
-
-render();
+Janis.of("Text").rgb(255, 128, 0).render();
 
 // Using hexadecimal notation
-Janis.
-
-of("Text").
-
-hex("#FF8000").
-
-render();
-Janis.
-
-of("Text").
-
-hex("#F80").
-
-render();  // Short form
+Janis.of("Text").hex("#FF8000").render();
+Janis.of("Text").hex("#F80").render();  // Short form
 ```
 
 #### Background Colors
@@ -136,99 +120,37 @@ render();  // Short form
 All color methods have background equivalents:
 
 ```java
-Janis.of("Text").
-
-bgColor(BasicColor.BLUE).
-
-render();
-Janis.
-
-of("Text").
-
-bgRgb(50,100,150).
-
-render();
-Janis.
-
-of("Text").
-
-bgHex("#326496").
-
-render();
+Janis.of("Text").bgColor(BasicColor.BLUE).render();
+Janis.of("Text").bgRgb(50, 100, 150).render();
+Janis.of("Text").bgHex("#326496").render();
 ```
 
 ### Text Attributes
 
 ```java
 // Bold text
-Janis.of("Bold").
-
-bold().
-
-render();
+Janis.of("Bold").bold().render();
 
 // Dim (faint) text
-Janis.
-
-of("Dim").
-
-dim().
-
-render();
+Janis.of("Dim").dim().render();
 
 // Italic text
-Janis.
-
-of("Italic").
-
-italic().
-
-render();
+Janis.of("Italic").italic().render();
 
 // Underlined text
-Janis.
-
-of("Underlined").
-
-underlined().
-
-render();
+Janis.of("Underlined").underlined().render();
 
 // Slow blink
-Janis.
-
-of("Blinking").
-
-slowBlink().
-
-render();
+Janis.of("Blinking").slowBlink().render();
 
 // Rapid blink
-Janis.
-
-of("Fast blink").
-
-rapidBlink().
-
-render();
+Janis.of("Fast blink").rapidBlink().render();
 
 // Reverse video (swap foreground/background)
-Janis.
-
-of("Reversed").
-
-reverse().
-
-render();
+Janis.of("Reversed").reverse().render();
 
 // Hidden (concealed) text
-Janis.
-
-of("Hidden").
-
-hide().
-
-render();
+Janis.of("Hidden").hide().render();
 ```
 
 ### Combining Styles
@@ -237,21 +159,11 @@ Chain multiple style methods together:
 
 ```java
 Janis.of("Important Warning")
-    .
-
-color(BasicColor.YELLOW)
-    .
-
-bgColor(BasicColor.RED)
-    .
-
-bold()
-    .
-
-underlined()
-    .
-
-render();
+    .color(BasicColor.YELLOW)
+    .bgColor(BasicColor.RED)
+    .bold()
+    .underlined()
+    .render();
 ```
 
 ### Factory Methods
@@ -283,18 +195,10 @@ Style warn = Janis.style().color(BasicColor.BRIGHT_YELLOW).bold().build();
 Style error = Janis.style().color(BasicColor.BRIGHT_RED).bold().build();
 Style success = Janis.style().color(BasicColor.BRIGHT_GREEN).bold().build();
 
-System.out.
-
-println(info.apply("[INFO]") +" Application started");
-        System.out.
-
-println(warn.apply("[WARN]") +" Low memory warning");
-        System.out.
-
-println(error.apply("[ERROR]") +" Connection failed");
-        System.out.
-
-println(success.apply("[SUCCESS]") +" Task completed");
+System.out.println(info.apply("[INFO]") + " Application started");
+System.out.println(warn.apply("[WARN]") + " Low memory warning");
+System.out.println(error.apply("[ERROR]") + " Connection failed");
+System.out.println(success.apply("[SUCCESS]") + " Task completed");
 ```
 
 ### Progress Bar
@@ -308,9 +212,7 @@ int filled = percent / 5;
 int empty = 20 - filled;
 
 String bar = progress.apply("█".repeat(filled)) + remaining.apply("░".repeat(empty));
-System.out.
-
-println("Progress: ["+bar +"] "+percent+"%");
+System.out.println("Progress: [" + bar + "] " + percent + "%");
 ```
 
 ### Rainbow Text
@@ -319,23 +221,10 @@ println("Progress: ["+bar +"] "+percent+"%");
 String[] colors = {"#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3"};
 String text = "Rainbow";
 
-for(
-int i = 0; i <text.
-
-length();
-
-i++){
-        System.out.
-
-print(Janis.of(String.valueOf(text.charAt(i))).
-
-hex(colors[i]).
-
-render());
-        }
-        System.out.
-
-println();
+for (int i = 0; i < text.length(); i++) {
+    System.out.print(Janis.of(String.valueOf(text.charAt(i))).hex(colors[i]).render());
+}
+System.out.println();
 ```
 
 ## Terminal Support
@@ -358,24 +247,14 @@ The library throws appropriate exceptions for invalid input:
 Janis.of(null);  // throws NullPointerException
 
 // IllegalArgumentException for invalid RGB values
-Janis.
-
-of("Text").
-
-rgb(300,0,0);  // throws IllegalArgumentException
+Janis.of("Text").rgb(300, 0, 0);  // throws IllegalArgumentException
 
 // IllegalArgumentException for invalid hex format
-Janis.
-
-of("Text").
-
-hex("FF0000");  // throws IllegalArgumentException (missing #)
+Janis.of("Text").hex("FF0000");  // throws IllegalArgumentException (missing #)
 
 // IllegalStateException for incorrect method usage
 StyleBuilder builder = Janis.of("Text");
-builder.
-
-build();  // throws IllegalStateException (should use render())
+builder.build();  // throws IllegalStateException (should use render())
 ```
 
 ## Building and Testing
