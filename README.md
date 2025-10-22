@@ -1,4 +1,7 @@
-<img width="395.5" height="189" alt="Janis_logo" src="https://github.com/user-attachments/assets/3bf2b60d-aab1-4831-aef0-067c5b5f9f98" />
+<div align="center">
+  <img width="395.5" height="189" alt="Janis_logo" src="https://github.com/user-attachments/assets/3bf2b60d-aab1-4831-aef0-067c5b5f9f98" />
+  <br><br>
+</div>
 
 [![Java](https://img.shields.io/badge/Java-21+-orange?style=flat&logo=java)](https://www.oracle.com/java/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -416,18 +419,18 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ### Development Guidelines
 
 - Follow existing code style and conventions
-- Keep the API simple and intuitive
-- Add tests for new features
-- Update documentation (README, Javadocs) when needed
+- Write clean, maintainable code
+- Add tests for new features or bug fixes
+- Update documentation when needed
 - Ensure all tests pass before submitting PR
-- Keep commits atomic and write clear commit messages
+- Keep commits focused and write clear commit messages
 
 ### Areas for Contribution
 
 - 🐛 Bug fixes and error handling improvements
-- ✨ New text styling features (strikethrough, double underline, etc.)
+- ✨ New styling features or color utilities
 - 📚 Documentation improvements and examples
-- 🧪 Additional test cases
+- 🧪 Additional test coverage
 - 🎨 Color palette utilities
 - 🔧 Performance optimizations
 
@@ -447,16 +450,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- Inspired by popular terminal styling libraries:
+- Inspired by popular terminal styling libraries from other languages:
     - [chalk](https://github.com/chalk/chalk) (JavaScript/Node.js)
     - [colorama](https://github.com/tartley/colorama) (Python)
     - [colored](https://github.com/dmlc/colored) (Rust)
 - Built with modern Java features:
-    - **Records** (Java 16+) for immutable data holders (`Rgb`, `StyleConfig`)
-    - **Builder Pattern** for fluent and readable API design
-    - **Enums** for type-safe color constants
-- Based on ANSI/VT100 escape code standards (ECMA-48)
-- Thanks to the Java community for continuous improvements to the language
+    - **Records** (Java 16+) for immutable data structures
+    - **Builder Pattern** for fluent API design
+    - **Enums** for type-safe constants
+- Based on ANSI/VT100 escape code standards
+- Thanks to the open-source community for inspiration and best practices
 
 ## Repository
 
