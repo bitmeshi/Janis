@@ -8,6 +8,14 @@ import java.util.Objects;
  */
 public final class Janis {
     /**
+     * Private constructor to prevent instantiation.
+     * This is a utility class that should only be accessed through its static methods.
+     */
+    private Janis() {
+        throw new UnsupportedOperationException("Utility class cannot be instantiated");
+    }
+
+    /**
      * Creates a StyleBuilder initialized with the given text for immediate styling.
      * Use this method when you want to style a specific text and render it immediately.
      *
