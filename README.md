@@ -1,4 +1,4 @@
-# Janis
+<img width="395.5" height="189" alt="Janis_logo" src="https://github.com/user-attachments/assets/3bf2b60d-aab1-4831-aef0-067c5b5f9f98" />
 
 [![Java](https://img.shields.io/badge/Java-21+-orange?style=flat&logo=java)](https://www.oracle.com/java/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
