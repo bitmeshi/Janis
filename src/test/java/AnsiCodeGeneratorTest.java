@@ -36,7 +36,7 @@ class AnsiCodeGeneratorTest {
     }
 
     @Test
-    @DisplayName("Test with green background color")
+    @DisplayName("Test with only green background color")
     void greenBackgroundColor() {
         StyleConfig config = new StyleConfig(
                 null, null,
@@ -51,7 +51,7 @@ class AnsiCodeGeneratorTest {
     }
 
     @Test
-    @DisplayName("Test with RGB text color and bold attribute")
+    @DisplayName("Test with RGB text color")
     void textColorRgb() {
         StyleConfig config = new StyleConfig(
                 null, new Rgb(255, 100, 50),
