@@ -11,7 +11,6 @@ class StyleBuilderTest {
     private StyleBuilder style;
     private StyleBuilder styleWithText;
 
-
     @BeforeAll
     void setup() {
         style = Janis.style();
