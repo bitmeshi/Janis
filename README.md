@@ -82,6 +82,12 @@ cd Janis
 
 Then include the generated JAR in your project's classpath.
 
+## Documentation
+
+📖 **[View Javadoc Documentation](https://jitpack.io/com/github/bitmeshi/Janis/latest/javadoc/)**
+
+Complete API reference with detailed documentation for all classes and methods.
+
 ## Quick Start
 
 ### Immediate Styling
