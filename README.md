@@ -111,8 +111,11 @@ BasicColor.BRIGHT_CYAN, BasicColor.BRIGHT_WHITE
 Janis.of("Text").rgb(255, 128, 0).render();
 
 // Using hexadecimal notation
-Janis.of("Text").hex("#FF8000").render();
-Janis.of("Text").hex("#F80").render();  // Short form
+Janis.of("Text").hex("#CD2C58").render();
+
+// Short form (each digit is repeated twice: #RGB -> #RRGGBB)
+Janis.of("Text").hex("#CCC").render();  // Equivalent to #CCCCCC
+Janis.of("Text").hex("#F80").render();  // Equivalent to #FF8800
 ```
 
 #### Background Colors
@@ -240,23 +243,118 @@ ANSI escape codes are supported by most modern terminals:
 
 ## Error Handling
 
-The library throws appropriate exceptions for invalid input:
+Janis validates input and throws specific exceptions to help you catch errors early. Here's what to expect:
+
+### Null Input Validation
+
+The library does not accept `null` values for text or color parameters:
 
 ```java
-// NullPointerException for null values
-Janis.of(null);  // throws NullPointerException
+// ❌ This will throw NullPointerException
+Janis.of(null).render();
 
-// IllegalArgumentException for invalid RGB values
-Janis.of("Text").rgb(300, 0, 0);  // throws IllegalArgumentException
-
-// IllegalArgumentException for invalid hex format
-Janis.of("Text").hex("FF0000");  // throws IllegalArgumentException (missing #)
-
-// IllegalStateException for incorrect method usage
-StyleBuilder builder = Janis.of("Text");
-builder.build();  // throws IllegalStateException (should use render())
+// ✅ Always provide a valid string
+Janis.of("").render();  // Empty strings are OK
+Janis.of("Valid text").render();
 ```
 
+**Exception:** `NullPointerException`  
+**Message:** "Text cannot be null"
+
+### RGB Color Range Validation
+
+RGB values must be in the range 0-255. Any value outside this range will be rejected:
+
+```java
+// ❌ Invalid: values exceed 255
+Janis.of("Text").rgb(300, 0, 0).render();  // Red value too high
+Janis.of("Text").bgRgb(0, -10, 0).render();  // Green value negative
+
+// ✅ Valid: all values between 0-255
+Janis.of("Text").rgb(255, 128, 0).render();
+Janis.of("Text").bgRgb(0, 0, 0).render();  // Black is valid
+```
+
+**Exception:** `IllegalArgumentException`  
+**Message:** "RGB values must be between 0 and 255"
+
+### Hexadecimal Format Validation
+
+Hex color codes must follow specific format rules:
+
+```java
+// ❌ Invalid formats
+Janis.of("Text").hex("FF0000").render();     // Missing # prefix
+Janis.of("Text").hex("#GG0000").render();    // Invalid characters (G)
+Janis.of("Text").hex("#12").render();        // Too short
+Janis.of("Text").hex("#1234567").render();   // Too long
+
+// ✅ Valid formats
+Janis.of("Text").hex("#FF0000").render();    // Full format (6 digits)
+Janis.of("Text").hex("#F00").render();       // Short format (3 digits)
+Janis.of("Text").hex("#fff").render();       // Lowercase is OK
+Janis.of("Text").hex("#ABC").render();       // Mixed case is OK
+```
+
+**Exception:** `IllegalArgumentException`  
+**Message:** "Invalid hex color format. Use #RGB or #RRGGBB"
+
+### Method Usage Validation
+
+Use the correct terminal method for your styling approach:
+
+```java
+// ❌ Wrong: using build() with Janis.of()
+StyleBuilder builder = Janis.of("Text").color(BasicColor.RED);
+Style style = builder.build();  // throws IllegalStateException
+
+// ✅ Correct: use render() with Janis.of()
+String styled = Janis.of("Text").color(BasicColor.RED).render();
+
+// ✅ Correct: use build() with Janis.style()
+Style reusableStyle = Janis.style().color(BasicColor.RED).build();
+String result = reusableStyle.apply("Text");
+```
+
+**Exception:** `IllegalStateException`  
+**Message:** "Cannot build a Style from a text-based builder. Use render() instead"
+
+### Best Practices
+
+To avoid runtime errors:
+
+1. **Validate user input** before passing to Janis:
+```java
+String userInput = getUserInput();
+if (userInput != null && !userInput.isEmpty()) {
+    System.out.println(Janis.of(userInput).color(BasicColor.GREEN).render());
+}
+```
+
+2. **Catch exceptions** when working with dynamic values:
+```java
+try {
+    String hexColor = getDynamicColor();  // e.g., from config file
+    System.out.println(Janis.of("Text").hex(hexColor).render());
+} catch (IllegalArgumentException e) {
+    System.err.println("Invalid color format: " + e.getMessage());
+    // Fallback to a default color
+    System.out.println(Janis.of("Text").color(BasicColor.WHITE).render());
+}
+```
+
+3. **Validate RGB ranges** from external sources:
+```java
+int r = getRedValue();
+int g = getGreenValue();
+int b = getBlueValue();
+
+if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255) {
+    System.out.println(Janis.of("Text").rgb(r, g, b).render());
+} else {
+    System.err.println("RGB values must be between 0 and 255");
+}
+```
 ## Building and Testing
 
 ### Build the Project
@@ -337,7 +435,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - **Records** (Java 16+) for immutable data structures
     - **Builder Pattern** for fluent API design
     - **Enums** for type-safe constants
-- Based on ANSI/VT100 escape code standards
+- Implements ANSI escape code standards for terminal text formatting
 - Thanks to the open-source community for inspiration and best practices
 
 ## Repository
